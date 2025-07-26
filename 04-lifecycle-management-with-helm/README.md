@@ -11,7 +11,7 @@ helm install my-first-site bitnami/wordpress
 helm install my-second-site bitnami/wordpress
 ```
 
-**Installing a Specific Chart Version**
+**1. Installing a Specific Chart Version**
 
 Let’s create a new release to see lifecycle management in action. In this example, we install an older version of the NGINX chart by specifying the version option:
 
@@ -19,7 +19,7 @@ Let’s create a new release to see lifecycle management in action. In this exam
 
 After installation, you have an NGINX release named "nginx-release." Over time—say, two months—security vulnerabilities might be discovered that require patching. In your Kubernetes cluster, the NGINX release might comprise several objects. When you upgrade the Pods running NGINX, you might also need to update other Kubernetes objects (for example, by adding a new environment variable or secret) so that the manifest meets the requirements of the new version.
 
-**Verifying the Deployed Version**
+**2. Verifying the Deployed Version**
 
 Helm streamlines the upgrade process by tracking all objects associated with a release, enabling upgrades with a single command. First, verify the version running in your Pod by listing all Pods and then inspecting the target Pod:
 
@@ -43,7 +43,7 @@ Containers:
     State:          Running
 ```
 
-**Upgrading the Release**
+**3. Upgrading the Release**
 
 To upgrade to a newer version, run the following Helm upgrade command:
 
@@ -64,7 +64,7 @@ APP VERSION: 1.21.4
 
 During this upgrade, Helm replaces the old Pod with a new one running the updated version (NGINX 1.21.4). You can verify the change by listing the Pods again and describing the new Pod.
 
-**Tracking Release History**
+**4. Tracking Release History**
 
 Helm’s lifecycle management maintains a detailed history of each release state. After upgrading, list all releases to see the current revision:
 
@@ -83,7 +83,7 @@ REVISION    UPDATED                     STATUS      CHART         APP VERSION   
 2           Mon Nov 15 19:25:55 2021   deployed    nginx-9.5.13  1.21.4        Upgrade complete
 ```
 
-**Rolling Back Upgrades**
+**5. Rolling Back Upgrades**
 
 If an upgrade introduces undesired changes, Helm supports rollbacks. For instance, to return to revision 1, execute:
 
