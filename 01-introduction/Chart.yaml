@@ -1,0 +1,20 @@
+apiVersion: v2    # Indicates the chart API version. Helm 3 charts use v2 and Helm 2 charts use v1
+appVersion: 2.0.8 # Specifies the version of the packaged application (e.g., WordPress version 2.0.8)
+version: 5.1.12   # Represents the chart version and helps track changes independently of the application version
+name: wordpress
+description: Web publishing platform for building blogs and websites
+type: application # Indicates application or library
+dependencies:     # Lists any dependent charts. Used to define other charts that your application relies on in order to function correctly and provides a mechanism for installing and configuring them automatically and conditionally.
+  - condition: mariadb.enabled
+    name: mariadb
+    repository: https://charts.bitnami.com/bitnami
+    version: 9.x.x
+keywords:       # Helpful while searching for charts in the charts repository
+  - application
+  - blog
+  - wordpress
+maintainers:
+  - email: containers@bitnami.com
+    name: Bitnami
+home: https://github.com/bitnami/charts/tree/master/bitnami/wordpress
+icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
