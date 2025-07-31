@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{  .Release.Name }}-nginx
+spec:
+  replicas: {{  .Values.replicaCount  }}
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: {{ default "nginx" .Values.image.repository | upper  }}
+        image: {{ default "nginx" .Values.image.repository  }}  # Helm will use "nginx" if no repository value is provided
+        ports:
+        - name: http
+          protocol: TCP
+          containerPort: 80
