@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-regioninfo
+data:
+  regions:
+    - "ohio"
+    - "newyork"
+    - "ontario"
+    - "london"
+    - "singapore"
+    - "mumbai"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-regioninfo
+data:
+  regions:
+    {{- range .Values.regions }}
+    - {{ . | quote }}
+    {{- end }}
