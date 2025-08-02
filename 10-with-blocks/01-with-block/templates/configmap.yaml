@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-appinfo
+data:
+  background: {{ .Values.app.ui.bg  }}
+  foreground: {{ .Values.app.ui.fg }}
+  database: {{ .Values.app.db.name }}
+  connection: {{ .Values.app.db.conn }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-appinfo
+data:
+{{- with .Values.app }}
+  background: {{ .ui.bg }}
+  foreground: {{ .ui.fg }}
+  database: {{ .db.name }}
+  connection: {{ .db.conn }}
+{{- end }}
